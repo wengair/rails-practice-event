@@ -1,0 +1,5 @@
+<div class="container">
+  <h1>All our Events(<%= @events.length %>)</h1>
+  <p>You search for <%= @query %>. We found <%= @events.length %> out of <%= @total %> on out website.</p>
+  <%= render 'list', events:@events %>
+</div>

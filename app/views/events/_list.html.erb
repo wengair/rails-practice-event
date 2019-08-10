@@ -1,0 +1,9 @@
+<div class="row">
+  <% @events.each do |event| %>
+    <div class="mcard shadow-sm" style="width: 18rem;">
+      <div class="card-body bg-light" style="background-image: url(<%= event.pic %>); background-size: contain;">
+        <h5 class="card-title"><%= link_to event.name, event_path(event), style:"color:#FFFFFF"%></h5>
+      </div>
+    </div>
+  <% end %>
+</div>
