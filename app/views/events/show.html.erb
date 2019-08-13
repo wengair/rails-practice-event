@@ -1,7 +1,43 @@
 <div class="container">
-  <h1><%= @event.name %></h1>
-  <p>who else has interests in this event</p>
-  <% @event.users.each do |user|%>
-  <p><%= link_to user.name, user_path(user) %></p>
-  <% end %>
+  <div class="event-img">
+    <%= cl_image_tag @event.pic, class: "event-img-self" %>
+  </div>
+  <div class="flex-con">
+    <div class="event-info gray-temp fontcolor">
+      <h1><%= link_to @event.name, @event.link, class: "fontcolor", target: :_blank %></h1>
+      <%= link_to edit_event_path(@event) do %>
+        <i class="fas fa-edit fontcolor"></i>
+      <% end %>
+      <% @user = User.first %>
+      <% like = @user.likes.where("event_id=#{@event.id}") %>
+      <% if like.empty? %>
+        <%= link_to event_likes_path(@event), method: :post do %><i class="far fa-heart red-heart"></i><% end %>
+      <% else %>
+        <%= link_to like_path(like[0]), method: :delete do %><i class="fas fa-heart red-heart"></i><% end %>
+      <% end %> <p></p>
+      <p>Date: <%= @event.start_time %> - <%= @event.end_time %></p>
+      <p>Capacity: <%= @event.capacity %>   Left: <%= @event.capacity - @event.users.length %></p>
+      <span>Location: </span>
+      <span id="address"><%= @event.place %></span>
+      <div class="review"></br>
+        <h2>Reviews</h2>
+        <% @event.reviews.each do |review|%>
+          <ul>
+            <li><% review.rating.times do %>
+              <i class="fas fa-grin-tongue-squint"></i>
+              <% end %></br>
+            <%= review.content %></li>
+          </ul>
+        <% end %>
+        <%= render 'reviews/new_review', review: @review %>
+    </div>
+    </div>
+    <div class="add-info gray-temp fontcolor">
+      <p>Who else has interests in this event</p>
+      <% @event.users.each do |user|%>
+      <p><%= link_to user.name, user_path(user), class: "fontcolor" %></p>
+      <% end %>
+    </div>
+
+  </div>
 </div>

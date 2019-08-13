@@ -1,11 +1,112 @@
 // Specific CSS for your home-page
 
+body{
+  background-color: #bbcde5;
+  background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%231c5d99' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+body .user-container{
+  min-height:83vh;
+}
+.nav{
+  z-index: 10000;
+  position: sticky;
+  top: 0;
+}
+.dropbtn {
+  background-color: #FFFFFF;
+  color: $mgray;
+  padding: 10px;
+  font-size: 16px;
+  border: solid;
+  border-radius: 2px;
+  border-width: 1px;
+  border-color: $mgray;
+  cursor: pointer;
+  display:none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: $mblack;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: $mgray}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  color:white;
+  background-color: #494949;
+}
+
+
+
+.text-field{
+  padding:6px;
+  color:$mgray;
+  border-radius: 2px;
+  border-style: solid;
+  border-color:$mgray;
+  border-width: 1px;
+}
+
+.submit-button{
+  color:$mgray;
+  padding:6px 12px;
+  margin-right:6px;
+  border-radius: 2px;
+  border-style: solid;
+  border-color:$mgray;
+  border-width: 1px;
+  &:hover{
+    background-color: $mgray;
+    color:white;
+  }
+}
+
 .main-title{
   font-family: 'Arvo', serif;
   color: white;
   font-weight: 700;
   font-size: 40px;
   text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.user{
+  margin: 0px 5px;
+  color:$mgray;
+  padding-right: 15px;
+    border-radius:17px;
+    display:flex;
+    align-items:center;
+  &:hover{
+    text-decoration:none;
+    background-color:$mgray;
+    color:white;
+  }
+
+}
+.user-name{
+  margin-left:5px;
 }
 
 .sub-title{
@@ -15,9 +116,16 @@
   font-size: 20px;
   text-shadow: black 0.1em 0.1em 0.1em;
 }
+
+.big-card{
+  color:white;
+  margin:10px auto;
+}
+
+
 .mcard{
-  height:280px;
-  width:200px;
+  width: 245px;
+  height:200px;
   position: relative;
   display: flex;
   -webkit-box-orient: vertical;
@@ -25,7 +133,95 @@
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 2px;
-  margin: 10px;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+
+.card-body{
+  padding: 0px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.card-title{
+  border-radius: 5px 5px 0px 0px;
+  background-color: rgba(34, 34, 34, 0.6);
+  padding:5px;
+  width:100%;
+  height:35px;
+
+}
+
+#title-text{
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.card-body:hover #title-text{
+  color:white;
+  animation: moving 3s infinite ease-in-out;
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes moving {
+    from {
+      transform: translateX(0%);
+      // right: 0%;
+      }
+    to {
+      transform: translateX(-70%);
+      // right: 0%;
+      }
+}
+
+.card-like{
+  position:absolute;
+  bottom: 10px;
+  right:10px;
+  color:red;
+}
+
+@media (max-width:500px){
+  .dropbtn{
+     display:block;
+  }
+  .add-button{
+    display:none;
+  }
+
+  .user{
+    display:none;
+  }
+  button, input {
+    overflow: visible;
+    width: 90px;
+  }
+}
+
+.footer{
+  width:100%;
+  margin-top: 30px;
+  padding:15px 0px;
+  background-color: $mblack;
+
+}
+.footer-container{
+  text-align: center;
+  margin:auto;
+}
+
+.footer-text{
+  color: $mgray;
+  margin:auto;
+}
+
+.footer-text .fas{
+  color:#BF0E11;
 }

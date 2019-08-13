@@ -1,7 +1,21 @@
-<div class="container">
-  <h1>Users#show</h1>
-  <p>This user likes</p>
-  <% @user.events.each do |event| %>
-    <p><%= link_to event.name, event_path(event) %></p>
-  <% end %>
+<div class="user-container container">
+  <div class="user-content">
+    <div class="user-img-con">
+      <img class="user-img" src="<%= @user.avatar %>" alt="">
+    </div>
+    <div class="user-like">
+      <div class="user-des user-font-color">
+        <h1><%= @user.name  %></h1>
+        <p>Description: <%= @user.description %></p>
+      </div>
+      <div class="user-like-list user-font-color">
+        <p>This user has interests in these events:</p>
+        <ul>
+          <% @user.events.each do |event| %>
+            <p><%= link_to event.name, event_path(event), class: "user-font-color" %></p>
+          <% end %>
+      </ul>
+      </div>
+    </div>
+  </div>
 </div>

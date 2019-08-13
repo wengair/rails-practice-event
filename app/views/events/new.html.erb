@@ -1,5 +1,4 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
-<%= simple_form_for(@event) do |f| %>
-
-<% end %>
+<div class="container gray-temp partial-form fontcolor">
+  <h1>Add new event</h1>
+  <%= render 'form', event: @event %>
+</div>

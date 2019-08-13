@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :create]
+  before_action :set_event, only: [:show, :edit, :update]
   def index
     @events = Event.all
   end
 
   def show
+    @review = Review.new
   end
 
   def new
@@ -12,12 +13,24 @@ class EventsController < ApplicationController
   end
 
   def create
+    @event = Event.new(str_params)
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
+    @event.update(str_params)
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -37,6 +50,6 @@ class EventsController < ApplicationController
   end
 
   def str_params
-    # params.require(:review).permit(:rating, :content)
+    params.require(:event).permit(:name, :pic, :start_time, :end_time, :capacity, :place, :link)
   end
 end

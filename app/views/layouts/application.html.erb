@@ -9,18 +9,31 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' /> -->
   </head>
 
   <body>
     <ul class="nav flex-sm-row d-flex justify-content-between p-2 bg-light ">
       <li class="nav-item">
+        <div class="dropdown">
+          <i class="fas fa-bars dropbtn"></i>
+          <div class="dropdown-content">
+          <!-- dropdown button 1 -->
+          <%= link_to "Add Event", new_event_path %>
+          <!-- dropdown button 2 -->
+          <%= link_to user_path(1) do %>
+          <img src="<%= User.first.avatar %>" alt="" class="avatar">
+          <span class="user-name"><%= User.first.name %></span>
+        <% end %>
+          </div>
+        </div>
         <%= link_to "Happy List", root_path, class:"btn btn-light" %>
       </li>
       <li class="nav-item d-flex">
-        <div class=" d-inline">
+        <div class="d-inline">
           <%= form_for :update_list, url: '/events/update_list', method: :get do |f| %>
-              <%= f.text_field :query, class: "text-field" %>
-              <%= f.submit "submit", class: "btn btn-outline-success ml-2 mr-2" %>
+              <%= f.text_field :query, class: "text-field", placeholder: "search for events" %>
+              <%= f.submit "Submit", class: "submit-button" %>
           <% end %>
         </div>
         <!-- <form class="form-inline" action="/flats/update_list">
@@ -28,15 +41,20 @@
           <input class="btn btn-outline-success ml-2 mr-2" type="submit" value="Submit">
         </form> -->
         <div>
-        <%= link_to "Add Event", new_event_path, class: "btn btn-outline-primary" %>
+        <%= link_to "Add Event", new_event_path, class: "btn btn-outline-secondary add-button" %>
         </div>
+        <%= link_to user_path(1) ,class: "user" do %>
+          <img src="<%= User.first.avatar %>" alt="" class="avatar">
+          <span class="user-name"><%= User.first.name %></span>
+        <% end %>
       </li>
-      <%= link_to user_path(1) do %>
-        <img src="<%= User.first.avatar %>" alt="" class="avatar">
-        <p><%= User.first.name %></p>
-      <% end %>
     </ul>
     <%= yield %>
+    <div class="footer">
+      <div class="footer-container">
+          <p class="footer-text">This website was coded with <i class="fas fa-cocktail"></i> at Le Wagon.</p>
+      </div>
+    </div>
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
     <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>

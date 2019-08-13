@@ -1,0 +1,7 @@
+<div class="container">
+  <%= simple_form_for [@event, @review] do |f| %>
+    <%= f.input :rating %>
+    <%= f.input :content %>
+    <%= f.submit "Add Review", class: "btn btn-secondary" %>
+  <% end %>
+</div>

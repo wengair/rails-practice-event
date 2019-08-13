@@ -1,9 +1,20 @@
-<div class="row">
-  <% @events.each do |event| %>
-    <div class="mcard shadow-sm" style="width: 18rem;">
-      <div class="card-body bg-light" style="background-image: url(<%= event.pic %>); background-size: contain;">
-        <h5 class="card-title"><%= link_to event.name, event_path(event), style:"color:#FFFFFF"%></h5>
+<% @events.each do |event| %>
+  <%= link_to event_path(event), class: "big-card" do%>
+    <div class="mcard shadow-sm" style="background-image: url(<%= event.pic %>);">
+      <div class="card-body">
+        <div class="card-title">
+          <h5 id="title-text"><%= event.name %></h5>
+        </div>
+      <div class="card-like">
+        <% @user = User.first %>
+        <% like = @user.likes.where("event_id=#{event.id}") %>
+        <% if like.empty? %>
+          <i class="far fa-heart"></i>
+        <% else %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      </div>
       </div>
     </div>
   <% end %>
-</div>
+<% end %>

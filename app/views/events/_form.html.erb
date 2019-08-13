@@ -1,0 +1,11 @@
+<%= simple_form_for @event do |f| %>
+  <%= f.input :name %>
+  <%= f.input :pic %>
+  <%= f.input :pic_cache, as: :hidden %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :capacity %>
+  <%= f.input :place %>
+  <%= f.input :link %>
+  <%= f.submit "Submit", class: "btn btn-secondary" %>
+<% end %>
