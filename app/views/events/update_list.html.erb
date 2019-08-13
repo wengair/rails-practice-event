@@ -1,7 +1,9 @@
-<div class="container">
-  <h1 class="main-title">Enjoy the moment</h1>
-  <p class="sub-title">You search for <%= @query %>. We found <%= @events.length %> out of <%= @total %> on out website.</p>
-  <div class="row">
-    <%= render 'list', events:@events %>
+<div class="index-banner">
+  <div class="container">
+    <h1 class="main-title">Enjoy the moment</h1>
+    <p class="sub-title">You search for <%= @query %>. We found <%= @events.length %> out of <%= @total %> on out website.</p>
+    <div class="row">
+      <%= render 'list', events:@events %>
+    </div>
   </div>
 </div>
